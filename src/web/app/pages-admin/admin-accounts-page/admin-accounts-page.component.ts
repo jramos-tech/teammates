@@ -32,6 +32,7 @@ export class AdminAccountsPageComponent implements OnInit {
   isLoadingAccountInfo: boolean = false;
   isLoadingStudentCourses: boolean = false;
   isLoadingInstructorCourses: boolean = false;
+  selectedRole: string = 'student'; // Default to 'student' or 'instructor' based on your preference
 
   constructor(private route: ActivatedRoute,
               private instructorService: InstructorService,
@@ -107,6 +108,21 @@ export class AdminAccountsPageComponent implements OnInit {
       next: () => {
         this.navigationService.navigateWithSuccessMessage('/web/admin/search',
             `Account "${id}" is successfully deleted.`);
+      },
+      error: (resp: ErrorMessageOutput) => {
+        this.statusMessageService.showErrorToast(resp.error.message);
+      },
+    });
+  }
+
+  updateAccount(): void {
+    const id: string = this.accountInfo.googleId;
+    const updatedAccount = { ...this.accountInfo, role: this.selectedRole };
+
+    this.accountService.updateAccountRole(id, updatedAccount).subscribe({
+      next: () => {
+        this.statusMessageService.showSuccessToast(`Account "${id}" is successfully updated to "${this.selectedRole}"`);
+        this.loadAccountInfo(id); // Refresh the account info after update
       },
       error: (resp: ErrorMessageOutput) => {
         this.statusMessageService.showErrorToast(resp.error.message);

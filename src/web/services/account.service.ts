@@ -176,4 +176,7 @@ export class AccountService {
     return this.httpRequestService.post(ResourceEndpoints.ACCOUNT_REQUEST_REJECT, paramMap, accountReqRejectRequest);
   }
 
+  updateAccountRole(id: string, account: Account): Observable<void> {
+    return this.httpRequestService.put(`/api/accounts/${id}/role`, {}, account);
+  }
 }
