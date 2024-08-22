@@ -6,12 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -26,6 +21,7 @@ import teammates.common.util.FieldValidator;
 @Table(name = "DeadlineExtensions")
 public class DeadlineExtension extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     @ManyToOne
@@ -52,7 +48,7 @@ public class DeadlineExtension extends BaseEntity {
     }
 
     public DeadlineExtension(User user, FeedbackSession feedbackSession, Instant endTime) {
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
         this.setUser(user);
         this.setFeedbackSession(feedbackSession);
         this.setEndTime(endTime);
