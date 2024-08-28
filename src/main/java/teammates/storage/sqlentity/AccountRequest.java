@@ -7,14 +7,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import teammates.common.datatransfer.AccountRequestStatus;
@@ -34,6 +29,8 @@ import teammates.common.util.StringHelper;
         })
 public class AccountRequest extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     private String registrationKey;
