@@ -24,7 +24,6 @@ export enum Milliseconds {
     IN_ONE_DAY = 86400000,
     IN_ONE_WEEK = 604800000,
 }
-
 export const getDefaultDateFormat = (): DateFormat => {
     return { year: 0, month: 0, day: 0 };
 };

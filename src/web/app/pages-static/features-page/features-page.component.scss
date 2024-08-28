@@ -1,19 +1,31 @@
+/* General styling for images */
 img {
   margin: 15px 0;
   max-width: 80%;
+  display: block; /* Ensures images are block-level and margins are respected */
+  height: auto;   /* Maintains aspect ratio */
+  border-radius: 8px; /* Rounded corners for a modern touch */
+  border: 2px solid #A66A5E; /* Warm Brown border for visual appeal */
 }
 
+/* General styling for inner content */
 .inner-content {
   margin: 0 20px;
+  background-color: #F6E1DC; /* Light Peach background for a clean look */
+  padding: 20px; /* Adds padding for better spacing */
+  border-radius: 8px; /* Rounded corners for modern styling */
+  border: 1px solid #FF6F00; /* Vibrant Orange border for emphasis */
 }
 
-@media (width <= 991px) {
+/* Media query for devices with width less than or equal to 991px */
+@media (max-width: 991px) {
   img {
-    margin: 0;
-    max-width: 100%;
+    margin: 10px 0; /* Adjusted margin for smaller screens */
+    max-width: 100%; /* Ensures images are fully responsive */
   }
 
   .inner-content {
-    margin: 0;
+    margin: 10px; /* Adjusted margin for smaller screens */
+    padding: 15px; /* Adjusted padding for smaller screens */
   }
 }

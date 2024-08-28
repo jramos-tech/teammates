@@ -8,6 +8,7 @@ import java.util.UUID;
 import jakarta.persistence.*;
 import org.checkerframework.common.aliasing.qual.Unique;
 
+
 /**
  * Represents an association class between Accounts and Notifications.
  * Keeps track of which Notifications have been read by an Account.
@@ -31,7 +32,6 @@ public class ReadNotification extends BaseEntity {
     }
 
     public ReadNotification(Account account, Notification notification) {
-        //this.setId(UUID.randomUUID()); //todo delete
         this.setAccount(account);
         this.setNotification(notification);
     }

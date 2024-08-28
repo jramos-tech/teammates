@@ -1,3 +1,40 @@
+/* General styling for images */
 img {
   margin: 20px 0;
+  max-width: 100%; /* Ensures the image scales properly on different devices */
+  height: auto;    /* Maintains aspect ratio */
+}
+
+/* Styling for contact information */
+p {
+  margin-bottom: 15px; /* Adds space between paragraphs */
+}
+
+a {
+  color: #FF6F00; /* Vibrant Orange for links */
+  text-decoration: none; /* Removes underline from links */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline links on hover for better usability */
+  color: #A66A5E; /* Warm Brown on hover for better visibility */
+}
+
+.fas, .fab {
+  margin-right: 5px; /* Adds space between icons and text */
+}
+
+.color-orange {
+  color: #FF6F00; /* Vibrant Orange */
+}
+
+.color-blue {
+  color: #A66A5E; /* Warm Brown for contrast */
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  img {
+    margin: 10px 0; /* Reduces margin on smaller screens */
+  }
 }

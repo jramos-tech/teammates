@@ -49,7 +49,7 @@ public class Account extends BaseEntity {
     }
 
     public Account(String googleId, String name, String email) {
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
         this.setGoogleId(googleId);
         this.setName(name);
         this.setEmail(email);

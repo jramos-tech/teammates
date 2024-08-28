@@ -27,6 +27,7 @@ import { SortBy } from '../../../types/sort-properties';
 import { DatePickerFormatter } from '../../components/datepicker/datepicker-formatter';
 import { ColumnData, SortableTableCellData } from '../../components/sortable-table/sortable-table.component';
 import { ErrorMessageOutput } from '../../error-message-output';
+//import {SessionResultCsvService} from "../../../services/session-result-csv.service";
 
 /**
  * Model for searching of logs
@@ -237,7 +238,11 @@ export class InstructorStudentActivityLogsComponent implements OnInit {
       },
     });
   }
-
+    logsCount(): number {
+        return this.searchResults.reduce((count, logModel) => {
+            return count + logModel.logRowsData.length;
+        }, 0);
+    }
   /**
    * Load the course based on the course id
    */

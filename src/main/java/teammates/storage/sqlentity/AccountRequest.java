@@ -57,7 +57,7 @@ public class AccountRequest extends BaseEntity {
     }
 
     public AccountRequest(String email, String name, String institute, AccountRequestStatus status, String comments) {
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
         this.setEmail(email);
         this.setName(name);
         this.setInstitute(institute);

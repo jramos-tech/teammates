@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { finalize } from 'rxjs/operators';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { AccountService } from '../../../services/account.service';
 import { CourseService } from '../../../services/course.service';
 import { InstructorService } from '../../../services/instructor.service';
@@ -9,10 +9,8 @@ import { StatusMessageService } from '../../../services/status-message.service';
 import { StudentService } from '../../../services/student.service';
 import { Account, Course, Courses } from '../../../types/api-output';
 import { ErrorMessageOutput } from '../../error-message-output';
+import { forkJoin, Observable, throwError } from 'rxjs';
 
-/**
- * Admin accounts page.
- */
 @Component({
   selector: 'tm-admin-accounts-page',
   templateUrl: './admin-accounts-page.component.html',
@@ -32,6 +30,8 @@ export class AdminAccountsPageComponent implements OnInit {
   isLoadingAccountInfo: boolean = false;
   isLoadingStudentCourses: boolean = false;
   isLoadingInstructorCourses: boolean = false;
+  isUpdatingAccountRole: boolean = false;
+  selectedRole: string = 'student';
 
   constructor(private route: ActivatedRoute,
               private instructorService: InstructorService,
@@ -39,7 +39,8 @@ export class AdminAccountsPageComponent implements OnInit {
               private navigationService: NavigationService,
               private statusMessageService: StatusMessageService,
               private accountService: AccountService,
-              private courseService: CourseService) { }
+              private courseService: CourseService) {
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((queryParams: any) => {
@@ -47,9 +48,6 @@ export class AdminAccountsPageComponent implements OnInit {
     });
   }
 
-  /**
-   * Loads the account information based on the given ID.
-   */
   loadAccountInfo(instructorid: string): void {
     this.isLoadingAccountInfo = true;
     this.accountService.getAccount(instructorid)
@@ -98,9 +96,6 @@ export class AdminAccountsPageComponent implements OnInit {
         });
   }
 
-  /**
-   * Deletes the entire account.
-   */
   deleteAccount(): void {
     const id: string = this.accountInfo.googleId;
     this.accountService.deleteAccount(id).subscribe({
@@ -114,40 +109,86 @@ export class AdminAccountsPageComponent implements OnInit {
     });
   }
 
-  /**
-   * Removes the student from course.
-   */
-  removeStudentFromCourse(courseId: string): void {
-    this.studentService.deleteStudent({
+  updateAccount(): void {
+    const id: string = this.accountInfo.googleId;
+    const isStudentRole = this.selectedRole === 'student';
+
+    if (isStudentRole) {
+      this.convertToStudent(id);
+    } else {
+      this.convertToInstructor(id);
+    }
+  }
+
+  convertToStudent(id: string): void {
+    const removeInstructorObservables = this.instructorCourses.map(course =>
+        this.removeInstructorFromCourse(course.courseId)
+    );
+
+    forkJoin(removeInstructorObservables).pipe(
+        finalize(() => this.loadAccountInfo(id))
+    ).subscribe({
+      next: () => {
+        this.statusMessageService.showSuccessToast(`Account "${id}" successfully updated to Student`);
+      },
+      error: (error) => {
+        this.statusMessageService.showErrorToast("Error converting to student role: " + error.message);
+      }
+    });
+  }
+
+  convertToInstructor(id: string): void {
+    const removeStudentObservables = this.studentCourses.map(course =>
+        this.removeStudentFromCourse(course.courseId)
+    );
+
+    forkJoin(removeStudentObservables).pipe(
+        finalize(() => this.loadAccountInfo(id))
+    ).subscribe({
+      next: () => {
+        this.statusMessageService.showSuccessToast(`Account "${id}" successfully updated to Instructor`);
+      },
+      error: (error) => {
+        this.statusMessageService.showErrorToast("Error converting to instructor role: " + error.message);
+      }
+    });
+  }
+
+
+  removeStudentFromCourse(courseId: string): Observable<void> {
+    return this.studentService.deleteStudent({
       courseId,
       googleId: this.accountInfo.googleId,
-    }).subscribe({
-      next: () => {
-        this.studentCourses = this.studentCourses.filter((course: Course) => course.courseId !== courseId);
-        this.statusMessageService.showSuccessToast(`Student is successfully deleted from course "${courseId}"`);
-      },
-      error: (resp: ErrorMessageOutput) => {
-        this.statusMessageService.showErrorToast(resp.error.message);
-      },
-    });
+    }).pipe(
+        tap(() => {
+          this.studentCourses = this.studentCourses.filter((course: Course) => course.courseId !== courseId);
+          this.statusMessageService.showSuccessToast(`Student is successfully deleted from course "${courseId}"`);
+        }),
+        catchError((resp: ErrorMessageOutput) => {
+          this.statusMessageService.showErrorToast(resp.error.message);
+          return throwError(() => new Error(resp.error.message));
+        })
+    );
   }
 
-  /**
-   * Removes the instructor from course.
-   */
-  removeInstructorFromCourse(courseId: string): void {
-    this.instructorService.deleteInstructor({
+  removeInstructorFromCourse(courseId: string): Observable<void> {
+    return this.instructorService.deleteInstructor({
       courseId,
       instructorId: this.accountInfo.googleId,
-    }).subscribe({
-      next: () => {
-        this.instructorCourses = this.instructorCourses.filter((course: Course) => course.courseId !== courseId);
-        this.statusMessageService.showSuccessToast(`Instructor is successfully deleted from course "${courseId}"`);
-      },
-      error: (resp: ErrorMessageOutput) => {
-        this.statusMessageService.showErrorToast(resp.error.message);
-      },
+    }).pipe(
+        tap(() => {
+          this.instructorCourses = this.instructorCourses.filter((course: Course) => course.courseId !== courseId);
+          this.statusMessageService.showSuccessToast(`Instructor is successfully deleted from course "${courseId}"`);
+        }),
+        catchError((resp: ErrorMessageOutput) => {
+          this.statusMessageService.showErrorToast(resp.error.message);
+          return throwError(() => new Error(resp.error.message));
+        })
+    );
+  }
+  noOp(): Observable<void> {
+    return new Observable<void>(observer => {
+      observer.complete();
     });
   }
-
 }

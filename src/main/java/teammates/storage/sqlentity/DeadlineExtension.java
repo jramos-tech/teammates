@@ -50,7 +50,7 @@ public class DeadlineExtension extends BaseEntity {
     }
 
     public DeadlineExtension(User user, FeedbackSession feedbackSession, Instant endTime) {
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
         this.setUser(user);
         this.setFeedbackSession(feedbackSession);
         this.setEndTime(endTime);

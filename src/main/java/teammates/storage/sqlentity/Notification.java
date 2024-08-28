@@ -71,7 +71,7 @@ public class Notification extends BaseEntity {
         this.setTargetUser(targetUser);
         this.setTitle(title);
         this.setMessage(message);
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
     }
 
     protected Notification() {

@@ -20,10 +20,6 @@ export class AdminPageComponent implements OnInit {
   isMaintainer: boolean = false;
   navItems: any[] = [
     {
-      url: '/web/admin',
-      display: 'Home',
-    },
-    {
       url: '/web/admin/search',
       display: 'Search',
     },

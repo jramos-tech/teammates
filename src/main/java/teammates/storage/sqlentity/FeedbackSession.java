@@ -103,7 +103,6 @@ public class FeedbackSession extends BaseEntity {
     public FeedbackSession(String name, Course course, String creatorEmail, String instructions, Instant startTime,
             Instant endTime, Instant sessionVisibleFromTime, Instant resultsVisibleFromTime, Duration gracePeriod,
             boolean isOpeningEmailEnabled, boolean isClosingEmailEnabled, boolean isPublishedEmailEnabled) {
-        //this.setId(UUID.randomUUID()); //todo delete
         this.setName(name);
         this.setCourse(course);
         this.setCreatorEmail(creatorEmail);

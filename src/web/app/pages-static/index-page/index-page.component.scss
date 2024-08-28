@@ -1,16 +1,85 @@
+/* Typography and color classes */
+.color-orange {
+  color: #FF6F00; /* Vibrant Orange */
+}
+
+.color-green {
+  color: #00B635; /* Vibrant Green for contrast */
+}
+
+// General Page Styles
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #F6E1DC; /* Light Peach for a modern background */
+  color: #333; /* Dark text for readability */
+}
+
+.section-heading {
+  font-size: 2.5em; /* Larger for emphasis */
+  color: #007F00; /* Dark Green for headings */
+  margin-top: 1em;
+}
+
 img {
   max-width: 100%;
+  height: auto;
+  border-radius: 12px; /* Slightly more rounded corners for a modern touch */
 }
 
-.margin-bottom-10px {
-  margin-bottom: 10px;
+.mt-3 {
+  margin-top: 1rem !important;
 }
 
-.button-center {
-  margin-left: auto;
-  margin-right: auto;
+.mt-4 {
+  margin-top: 1.5rem !important;
 }
 
-.padding-top-10px {
-  padding-top: 10px;
+// Button Styles
+.btn-request {
+  padding: 14px 24px; /* Increased padding for a more prominent button */
+  font-size: 1.2em; /* Larger font size for better visibility */
+  background-color: #FF6F00; /* Vibrant Orange for button background */
+  color: #F6E1DC; /* Light Peach text for contrast */
+  border: none;
+  border-radius: 6px; /* More rounded corners for a modern button */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth color and hover effects */
+
+  &:hover {
+    background-color: #A66A5E; /* Warm Brown on hover for visual feedback */
+    transform: scale(1.05); /* Slightly larger on hover for emphasis */
+  }
+}
+
+// Responsive grid and spacing
+.praise-section,
+.award-section,
+.design-section,
+.google-section,
+.community-section,
+.nonprofit-section,
+.academic-section {
+  margin-bottom: 30px;
+
+  .col-sm-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px; /* Increased padding for better spacing */
+  }
+
+  .col-sm-8 {
+    padding-top: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 2em; /* Slightly smaller font size for smaller screens */
+  }
+
+  .btn-request {
+    font-size: 1.1em; /* Adjusted font size for smaller screens */
+    padding: 10px 20px; /* Adjusted padding for smaller screens */
+  }
 }

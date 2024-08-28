@@ -42,7 +42,6 @@ public class Team extends BaseEntity {
     }
 
     public Team(Section section, String name) {
-        //this.setId(UUID.randomUUID()); //todo delete
         this.setSection(section);
         this.setName(name);
         this.setUsers(new ArrayList<>());

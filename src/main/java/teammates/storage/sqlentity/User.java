@@ -59,7 +59,6 @@ public abstract class User extends BaseEntity {
     }
 
     protected User(Course course, String name, String email) {
-        //this.setId(UUID.randomUUID()); //todo delete
         this.setCourse(course);
         this.setName(name);
         this.setEmail(email);

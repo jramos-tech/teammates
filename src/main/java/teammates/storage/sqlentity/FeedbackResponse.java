@@ -66,7 +66,6 @@ public abstract class FeedbackResponse extends BaseEntity {
             FeedbackQuestion feedbackQuestion, String giver,
             Section giverSection, String recipient, Section recipientSection
     ) {
-        //this.setId(UUID.randomUUID()); // todo delete
         this.setFeedbackQuestion(feedbackQuestion);
         this.setGiver(giver);
         this.setGiverSection(giverSection);

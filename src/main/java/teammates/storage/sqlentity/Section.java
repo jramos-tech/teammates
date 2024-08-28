@@ -23,6 +23,7 @@ import teammates.common.util.SanitizationHelper;
 @Table(name = "Sections")
 public class Section extends BaseEntity {
     @Id
+
     @GeneratedValue(strategy = GenerationType.UUID)
     @Unique
     private UUID id;

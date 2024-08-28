@@ -21,10 +21,6 @@ export class MaintainerPageComponent implements OnInit {
   isMaintainer: boolean = false;
   navItems: any[] = [
     {
-      url: '/web/maintainer',
-      display: 'Home',
-    },
-    {
       url: '/web/maintainer/timezone',
       display: 'Timezone Listing',
     },
