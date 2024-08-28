@@ -20,10 +20,6 @@ export class InstructorPageComponent implements OnInit {
   isMaintainer: boolean = false;
   navItems: any[] = [
     {
-      url: '/web/instructor',
-      display: 'Home',
-    },
-    {
       url: '/web/instructor/courses',
       display: 'Courses',
     },

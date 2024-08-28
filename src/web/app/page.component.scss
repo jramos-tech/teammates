@@ -1,79 +1,82 @@
+/* Global Styles */
 footer,
 nav {
-  background: #3c3c3c;
+  background: #A66A5E;
+  color: #F6E1DC;
 }
 
 nav {
   height: 50px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #FF6F00;
 
   img {
-    height: 50px;
+    height: 40px;
     margin-left: 20px;
   }
 }
 
 .main-content {
-  margin-top: 50px;
-  min-height: calc(100vh - 102px);
-  padding: 20px 70px;
-}
-
-@media (width <= 575px) {
-  .main-content {
-    min-height: calc(100vh - 144px);
-  }
-}
-
-@media (width >= 576px) and (width <= 589px) {
-  .main-content {
-    min-height: calc(100vh - 123px);
-  }
-}
-
-.footer {
-  padding: 5px 70px;
-  color: rgb(255 255 255 / 75%);
-
-  a {
-    &:hover {
-      filter: brightness(150%);
-    }
-  }
+  margin-top: 60px;
+  min-height: calc(100vh - 110px);
+  padding: 60px 70px;
+  background-color: #F6E1DC;
+  color: #333;
 }
 
 .container {
   max-width: 1350px;
+  margin: 0 auto;
 }
 
 .dropdown-item {
-  color: rgb(255 255 255 / 75%);
+  color: #F6E1DC;
 
   &:hover,
   &:focus {
-    background-color: inherit;
-    color: white;
+    background-color: #FF6F00;
+    color: #F6E1DC;
   }
 }
 
 .navbar-nav li {
-  margin: auto 0;
-  margin-left: 10px;
+  margin: auto 15px;
 }
 
 .navbar {
-  padding: 0 80px;
+  padding: 0 60px;
   z-index: 1000;
 }
 
 .nav-link {
   cursor: pointer;
+  color: #F6E1DC;
 }
 
 .pull-right {
   margin-right: 20px;
 }
 
-@media (width <= 1024px) {
+.footer {
+  margin-top: 28px;
+  padding: 20px 70px;
+  background-color: #A66A5E;
+  color: #F6E1DC;
+  text-align: center;
+  border-top: 2px solid #FF6F00;
+
+  a {
+    color: #F6E1DC;
+
+    &:hover {
+      color: #FF6F00;
+      text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
   .navbar {
     padding: 0 30px;
   }
@@ -87,27 +90,17 @@ nav {
   }
 }
 
-@media (width <= 991px) {
-  .navbar-nav li {
-    margin: auto 20px;
-  }
-
-  .pull-right {
-    margin-right: 0;
-  }
-}
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .navbar {
     padding: 0;
   }
 
   .main-content {
-    padding: 10px 15px;
+    padding: 10px 20px;
   }
 
   .footer {
-    padding: 5px 15px;
+    padding: 5px 20px;
   }
 }
 
@@ -121,12 +114,12 @@ nav {
 
 .navbar-collapse,
 .dropdown-menu {
-  background: #3c3c3c;
+  background: #A66A5E;
   min-width: 0;
 }
 
 .dropdown-divider {
-  border: 1px solid rgb(255 255 255 / 50%);
+  border: 1px solid rgba(246, 225, 220, 0.5);
   margin: 0.5rem 15px;
 }
 
@@ -135,5 +128,5 @@ nav {
 }
 
 button.bg-transparent.btn.btn-link.nav-link:active {
-  color: white !important;
+  color: #F6E1DC !important;
 }

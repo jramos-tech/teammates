@@ -1,5 +1,7 @@
-<div id="question-panel-{{ question.question.questionNumber }}" class="card margin-bottom-15px" *ngFor="let question of questionsOrder">
-  <div class="card-header bg-info cursor-pointer" (click)="toggleAndLoadTab.emit(question.question.feedbackQuestionId)">
+<div id="question-panel-{{ question.question.questionNumber }}" class="card  margin-bottom-15px" *ngFor="let question
+ of questionsOrder">
+  <div class="card-header custom-bg-color cursor-pointer color"
+       (click)="toggleAndLoadTab.emit(question.question.feedbackQuestionId)">
    <div class="d-flex w-100 flex-fill flex-md-row flex-column align-items-md-center align-items-start">
     <div>
       <tm-question-text-with-info [questionNumber]="question.question.questionNumber"

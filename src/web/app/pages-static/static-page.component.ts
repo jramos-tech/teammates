@@ -21,10 +21,6 @@ export class StaticPageComponent implements OnInit {
   isMaintainer: boolean = false;
   navItems: any[] = [
     {
-      url: '/web/front',
-      display: 'Home',
-    },
-    {
       url: '/web/front/features',
       display: 'Features',
     },

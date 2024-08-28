@@ -20,10 +20,6 @@ export class StudentPageComponent implements OnInit {
   isMaintainer: boolean = false;
   navItems: any[] = [
     {
-      url: '/web/student',
-      display: 'Home',
-    },
-    {
       url: '/web/student/notifications',
       display: 'Notifications',
     },

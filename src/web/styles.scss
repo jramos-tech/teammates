@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-// Required to use ngx-page-scroll service https://github.com/TEAMMATES/teammates/pull/12224#issuecomment-1480350769.
+// Required to use ngx-page-scroll service
 html {
   scroll-behavior: auto !important;
 }
@@ -8,6 +8,8 @@ html {
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
+  background-color: #F6E1DC; /* Light Peach for a modern, clean background */
+  color: #54433A; /* Dark Brown for primary text color */
 }
 
 ul {
@@ -17,31 +19,37 @@ ul {
 h1,
 .h1 {
   font-size: 2.1875rem;
+  color: #A66A5E; /* Warm Brown for headings */
 }
 
 h2,
 .h2 {
   font-size: 1.75rem;
+  color: #FF6F00; /* Vibrant Orange for secondary headings */
 }
 
 h3,
 .h3 {
   font-size: 1.53125rem;
+  color: #A66A5E; /* Warm Brown for tertiary headings */
 }
 
 h4,
 .h4 {
   font-size: 1.3125rem;
+  color: #54433A; /* Dark Brown for subheadings */
 }
 
 h5,
 .h5 {
   font-size: 1.09375rem;
+  color: #54433A; /* Dark Brown for smaller subheadings */
 }
 
 h6,
 .h6 {
   font-size: 0.875rem;
+  color: #A66A5E; /* Warm Brown for the smallest headings */
 }
 
 .btn,
@@ -51,11 +59,11 @@ h6,
 }
 
 .color-orange {
-  color: #e46d0b;
+  color: #FF6F00; /* Vibrant Orange for accents */
 }
 
-.color-blue {
-  color: #4379d1;
+.color-brown {
+  color: #A66A5E; /* Warm Brown for accents */
 }
 
 .hidden {
@@ -77,16 +85,22 @@ h6,
   padding: 0.75rem 1rem;
   word-break: break-word !important;
   word-wrap: break-word !important;
+  background-color: #FF6F00; /* Vibrant Orange for modal headers */
+  color: #F6E1DC; /* Light Peach text for contrast */
 }
 
 .modal-body {
   padding: 1rem 1.25rem;
   word-break: break-word !important;
   word-wrap: break-word !important;
+  background-color: #F6E1DC; /* Light Peach for modal body */
+  color: #54433A; /* Dark Brown text */
 }
 
 .modal-footer {
   padding: 0.3rem 0.5rem;
+  background-color: #54433A; /* Dark Brown for footer */
+  color: #F6E1DC; /* Light Peach text */
 }
 
 .modal-dialog {
@@ -95,12 +109,12 @@ h6,
   max-height: 90vh;
   max-width: 70vw;
   min-width: 30vw;
-  scrollbar-width: none; // Firefox
-  -ms-overflow-style: none; // IE10+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE10+ */
   vertical-align: middle;
 
   &::-webkit-scrollbar {
-    // Webkit-based browsers
+    /* Webkit-based browsers */
     width: 0;
     height: 0;
   }
@@ -110,7 +124,7 @@ h6,
   width: 1000px;
 }
 
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .modal-dialog {
     max-width: none;
     min-width: 65vw;
@@ -129,21 +143,27 @@ h6,
 
 .table {
   margin-bottom: 0;
+  border-collapse: collapse;
+}
 
-  & th,
-  td {
-    padding: 0.5rem;
-  }
+.table th,
+.table td {
+  padding: 0.5rem;
+  border: 1px solid #54433A; /* Dark Brown border for table cells */
 }
 
 .card {
   margin-bottom: 20px;
+  background-color: #F6E1DC; /* Light Peach background for cards */
+  border: 1px solid #54433A; /* Dark Brown border */
 }
 
 .card-header {
   align-items: center;
   display: flex;
   padding: 0.5rem 1rem;
+  background-color: #FF6F00; /* Vibrant Orange header background */
+  color: #F6E1DC; /* Light Peach text */
 }
 
 .card-header-btn-toolbar {
@@ -156,22 +176,26 @@ h6,
   }
 
   .btn-primary {
-    background-color: darken(#007bff, 5%); // 5% darker than primary
+    background-color: #A66A5E; /* Warm Brown for primary buttons */
+    border-color: #A66A5E;
   }
 
   .btn-secondary {
-    background-color: darken(#6c757d, 10%); // 10% darker than secondary
+    background-color: #54433A; /* Dark Brown for secondary buttons */
+    border-color: #54433A;
   }
 
   .btn-info {
-    background-color: darken(#0dcaf0, 3%); // 3% darker than info
+    background-color: #FF6F00; /* Vibrant Orange for info buttons */
+    border-color: #FF6F00;
   }
 }
 
 .dropdown-item {
   &:focus,
   &:hover {
-    background-color: #dae0e5;
+    background-color: #FF6F00; /* Vibrant Orange for hover state */
+    color: #F6E1DC; /* Light Peach text */
   }
 }
 
@@ -188,16 +212,16 @@ h6,
 }
 
 .ngb-tooltip-class {
-  text-decoration: underline dotted #808080;
+  text-decoration: underline dotted #54433A; /* Dark Brown dotted underline */
 
   &:hover {
-    text-decoration: underline dotted #000;
+    text-decoration: underline dotted #FF6F00; /* Vibrant Orange on hover */
   }
 }
 
 .modal-window-class {
-  color: #000;
-  text-decoration: underline dashed #000;
+  color: #A66A5E; /* Warm Brown text */
+  text-decoration: underline dashed #A66A5E; /* Warm Brown dashed underline */
   cursor: pointer;
 }
 
@@ -207,17 +231,16 @@ h6,
   }
 }
 
-// cursor not-allowed for input disabled attribute and tinyMCE's disabled
 [disabled],
 .editor.editor-disabled {
   cursor: not-allowed;
 }
 
 .btn-light {
-  border: 1px solid #ddd;
+  border: 1px solid #F6E1DC; /* Light Peach border for light buttons */
 
   &[disabled] {
-    border: 1px solid #eee;
+    border: 1px solid #E0E0E0; /* Light gray for disabled buttons */
   }
 }
 
@@ -239,17 +262,17 @@ h6,
 
 .fa-sort-down,
 .fa-sort-up {
-  color: black;
+  color: #A66A5E; /* Warm Brown for sort icons */
 }
 
 .fa-sort {
-  color: #ccc;
+  color: #F6E1DC; /* Light Peach for sort icon */
 }
 
 .fa-sort,
 .fa-sort-up,
 .fa-sort-down {
-  // copied from fa-stack-X
+  /* copied from fa-stack-X */
   left: 0;
   position: absolute;
   text-align: center;
@@ -262,27 +285,27 @@ h6,
 
 .ngb-dp-today > .btn-light {
   font-weight: bold;
-  color: blue;
+  color: #A66A5E; /* Warm Brown for today's date */
 }
 
 .handsontable .invalid-row,
 .red-box {
-  background: #f19491;
+  background: #FF6F00; /* Vibrant Orange for invalid rows */
 }
 
 .handsontable .new-row,
 .green-box {
-  background: #aeeba6;
+  background: #A66A5E; /* Warm Brown for new rows */
 }
 
 .handsontable .modified-row,
 .yellow-box {
-  background: #fcf4b3;
+  background: #F6E1DC; /* Light Peach for modified rows */
 }
 
 .handsontable .unchanged-row,
 .grey-box {
-  background: #ddd;
+  background: #E0E0E0; /* Light Gray for unchanged rows */
 }
 
 .handsontable .valid-row {
@@ -292,8 +315,6 @@ h6,
 .alert.alert-no-bottom {
   margin-bottom: 0;
 }
-
-// new rules to adapt to Bootstrap 5 changes
 
 .btn-link {
   text-decoration: none;
@@ -307,27 +328,21 @@ label {
   margin-bottom: 1rem;
 }
 
-// end of new rules to adapt to Bootstrap 5
-
-// overrides default bootstrap colours to increase contrast
 .navbar-dark {
-  --bs-navbar-color: rgb(255 255 255 / 75%);
+  --bs-navbar-color: rgba(255, 255, 255, 0.75); /* White with 75% opacity */
   --bs-navbar-hover-color: white;
 }
 
-// mouse hover on the icon "i"
 a:hover {
   cursor: pointer;
 }
 
-// dotted line below the icon "i"
 a i.fa-info-circle {
-  border-bottom: 2px dotted #000;
+  border-bottom: 2px dotted #A66A5E; /* Warm Brown dotted underline */
   padding-bottom: 2px;
   box-sizing: border-box;
 }
 
-// overrides default table-responsive scrolling
 .table-responsive {
   -webkit-overflow-scrolling: auto;
 }
