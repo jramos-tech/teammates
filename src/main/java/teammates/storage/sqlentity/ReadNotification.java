@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 /**
  * Represents an association class between Accounts and Notifications.
@@ -18,6 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "ReadNotifications")
 public class ReadNotification extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     @ManyToOne
@@ -31,7 +29,7 @@ public class ReadNotification extends BaseEntity {
     }
 
     public ReadNotification(Account account, Notification notification) {
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
         this.setAccount(account);
         this.setNotification(notification);
     }

@@ -6,12 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.OnDelete;
@@ -28,6 +23,7 @@ import teammates.common.util.SanitizationHelper;
 @Table(name = "Accounts")
 public class Account extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     @NaturalId
@@ -51,7 +47,7 @@ public class Account extends BaseEntity {
     }
 
     public Account(String googleId, String name, String email) {
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
         this.setGoogleId(googleId);
         this.setName(name);
         this.setEmail(email);

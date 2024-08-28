@@ -7,13 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -34,6 +28,7 @@ import teammates.common.util.StringHelper;
         })
 public class AccountRequest extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     private String registrationKey;
@@ -60,7 +55,7 @@ public class AccountRequest extends BaseEntity {
     }
 
     public AccountRequest(String email, String name, String institute, AccountRequestStatus status, String comments) {
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
         this.setEmail(email);
         this.setName(name);
         this.setInstitute(institute);
