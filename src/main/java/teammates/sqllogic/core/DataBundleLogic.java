@@ -140,7 +140,6 @@ public final class DataBundleLogic {
 
         for (Team team : teams) {
             UUID placeholderId = team.getId();
-            //team.setId(UUID.randomUUID());
             teamsMap.put(placeholderId, team);
             Section section = sectionsMap.get(team.getSection().getId());
             team.setSection(section);
@@ -148,7 +147,6 @@ public final class DataBundleLogic {
 
         for (FeedbackSession session : sessions) {
             UUID placeholderId = session.getId();
-            //session.setId(UUID.randomUUID());
             sessionsMap.put(placeholderId, session);
             Course course = coursesMap.get(session.getCourse().getId());
             session.setCourse(course);
@@ -156,7 +154,6 @@ public final class DataBundleLogic {
 
         for (FeedbackQuestion question : questions) {
             UUID placeholderId = question.getId();
-            //question.setId(UUID.randomUUID());
             questionMap.put(placeholderId, question);
             FeedbackSession fs = sessionsMap.get(question.getFeedbackSession().getId());
             question.setFeedbackSession(fs);
@@ -164,7 +161,6 @@ public final class DataBundleLogic {
 
         for (FeedbackResponse response : responses) {
             UUID placeholderId = response.getId();
-            //response.setId(UUID.randomUUID());
             responseMap.put(placeholderId, response);
             FeedbackQuestion fq = questionMap.get(response.getFeedbackQuestion().getId());
             Section giverSection = sectionsMap.get(response.getGiverSection().getId());
@@ -186,13 +182,11 @@ public final class DataBundleLogic {
 
         for (Account account : accounts) {
             UUID placeholderId = account.getId();
-            //account.setId(UUID.randomUUID());
             accountsMap.put(placeholderId, account);
         }
 
         for (Instructor instructor : instructors) {
             UUID placeholderId = instructor.getId();
-            //instructor.setId(UUID.randomUUID());
             usersMap.put(placeholderId, instructor);
             Course course = coursesMap.get(instructor.getCourse().getId());
             instructor.setCourse(course);
@@ -205,7 +199,6 @@ public final class DataBundleLogic {
 
         for (Student student : students) {
             UUID placeholderId = student.getId();
-            //student.setId(UUID.randomUUID());
             usersMap.put(placeholderId, student);
             Course course = coursesMap.get(student.getCourse().getId());
             student.setCourse(course);
@@ -219,7 +212,6 @@ public final class DataBundleLogic {
         }
 
         for (FeedbackSessionLog log : sessionLogs) {
-            //log.setId(UUID.randomUUID());
             FeedbackSession fs = sessionsMap.get(log.getFeedbackSession().getId());
             log.setFeedbackSession(fs);
             Student student = (Student) usersMap.get(log.getStudent().getId());
@@ -228,12 +220,10 @@ public final class DataBundleLogic {
 
         for (Notification notification : notifications) {
             UUID placeholderId = notification.getId();
-            //notification.setId(UUID.randomUUID());
             notificationsMap.put(placeholderId, notification);
         }
 
         for (ReadNotification readNotification : readNotifications) {
-            //readNotification.setId(UUID.randomUUID());
             Account account = accountsMap.get(readNotification.getAccount().getId());
             readNotification.setAccount(account);
             account.addReadNotification(readNotification);

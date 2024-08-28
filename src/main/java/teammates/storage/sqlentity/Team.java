@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import teammates.common.util.FieldValidator;
@@ -19,7 +20,8 @@ import teammates.common.util.FieldValidator;
 @Table(name = "Teams")
 public class Team extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     @ManyToOne
@@ -40,7 +42,6 @@ public class Team extends BaseEntity {
     }
 
     public Team(Section section, String name) {
-        //this.setId(UUID.randomUUID());
         this.setSection(section);
         this.setName(name);
         this.setUsers(new ArrayList<>());

@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import teammates.common.datatransfer.questions.FeedbackResponseDetails;
@@ -29,7 +30,8 @@ import teammates.storage.sqlentity.responses.FeedbackTextResponse;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class FeedbackResponse extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     @ManyToOne
@@ -64,7 +66,6 @@ public abstract class FeedbackResponse extends BaseEntity {
             FeedbackQuestion feedbackQuestion, String giver,
             Section giverSection, String recipient, Section recipientSection
     ) {
-        //this.setId(UUID.randomUUID());
         this.setFeedbackQuestion(feedbackQuestion);
         this.setGiver(giver);
         this.setGiverSection(giverSection);

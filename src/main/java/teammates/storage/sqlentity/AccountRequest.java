@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import teammates.common.datatransfer.AccountRequestStatus;
@@ -28,7 +29,8 @@ import teammates.common.util.StringHelper;
         })
 public class AccountRequest extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     private String registrationKey;

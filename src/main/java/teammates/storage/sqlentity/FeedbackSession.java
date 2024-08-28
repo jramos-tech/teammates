@@ -10,6 +10,7 @@ import java.util.UUID;
 import jakarta.persistence.*;
 
 import org.apache.commons.lang.StringUtils;
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -25,7 +26,8 @@ import teammates.common.util.SanitizationHelper;
 @Table(name = "FeedbackSessions", uniqueConstraints = @UniqueConstraint(columnNames = {"courseId", "name"}))
 public class FeedbackSession extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     @ManyToOne
@@ -101,7 +103,6 @@ public class FeedbackSession extends BaseEntity {
     public FeedbackSession(String name, Course course, String creatorEmail, String instructions, Instant startTime,
             Instant endTime, Instant sessionVisibleFromTime, Instant resultsVisibleFromTime, Duration gracePeriod,
             boolean isOpeningEmailEnabled, boolean isClosingEmailEnabled, boolean isPublishedEmailEnabled) {
-        //this.setId(UUID.randomUUID());
         this.setName(name);
         this.setCourse(course);
         this.setCreatorEmail(creatorEmail);

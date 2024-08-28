@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import teammates.common.datatransfer.FeedbackParticipantType;
@@ -31,7 +32,8 @@ import teammates.storage.sqlentity.questions.FeedbackTextQuestion;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class FeedbackQuestion extends BaseEntity implements Comparable<FeedbackQuestion> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     @ManyToOne

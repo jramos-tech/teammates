@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.OnDelete;
@@ -22,7 +23,8 @@ import teammates.common.datatransfer.logs.FeedbackSessionLogType;
 @Table(name = "FeedbackSessionLogs")
 public class FeedbackSessionLog extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     @ManyToOne
