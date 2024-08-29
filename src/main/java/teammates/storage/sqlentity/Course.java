@@ -26,7 +26,6 @@ import teammates.common.util.SanitizationHelper;
 @Table(name = "Courses")
 public class Course extends BaseEntity {
     @Id
-
     private String id;
 
     @Column(nullable = false)
