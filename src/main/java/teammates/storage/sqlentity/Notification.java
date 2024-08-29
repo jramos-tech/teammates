@@ -6,15 +6,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -32,6 +26,8 @@ import teammates.common.util.SanitizationHelper;
 public class Notification extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     @Column(nullable = false)
@@ -75,7 +71,7 @@ public class Notification extends BaseEntity {
         this.setTargetUser(targetUser);
         this.setTitle(title);
         this.setMessage(message);
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
     }
 
     protected Notification() {

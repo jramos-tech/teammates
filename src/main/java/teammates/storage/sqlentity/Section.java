@@ -6,15 +6,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -29,6 +23,9 @@ import teammates.common.util.SanitizationHelper;
 @Table(name = "Sections")
 public class Section extends BaseEntity {
     @Id
+
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     @ManyToOne
@@ -50,7 +47,7 @@ public class Section extends BaseEntity {
     }
 
     public Section(Course course, String name) {
-        this.setId(UUID.randomUUID());
+        //this.setId(UUID.randomUUID());
         this.setCourse(course);
         this.setName(name);
         this.setTeams(new ArrayList<>());

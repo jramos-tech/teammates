@@ -5,16 +5,9 @@ import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import teammates.common.util.SanitizationHelper;
@@ -30,6 +23,8 @@ import teammates.common.util.StringHelper;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Unique
     private UUID id;
 
     @ManyToOne
@@ -64,7 +59,6 @@ public abstract class User extends BaseEntity {
     }
 
     protected User(Course course, String name, String email) {
-        this.setId(UUID.randomUUID());
         this.setCourse(course);
         this.setName(name);
         this.setEmail(email);
