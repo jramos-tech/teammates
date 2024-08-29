@@ -6,9 +6,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
-import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import teammates.common.datatransfer.questions.FeedbackResponseDetails;
@@ -30,8 +38,6 @@ import teammates.storage.sqlentity.responses.FeedbackTextResponse;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class FeedbackResponse extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Unique
     private UUID id;
 
     @ManyToOne
@@ -66,6 +72,7 @@ public abstract class FeedbackResponse extends BaseEntity {
             FeedbackQuestion feedbackQuestion, String giver,
             Section giverSection, String recipient, Section recipientSection
     ) {
+        this.setId(UUID.randomUUID());
         this.setFeedbackQuestion(feedbackQuestion);
         this.setGiver(giver);
         this.setGiverSection(giverSection);

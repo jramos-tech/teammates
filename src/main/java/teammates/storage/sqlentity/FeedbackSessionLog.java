@@ -6,9 +6,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.OnDelete;
@@ -23,8 +29,6 @@ import teammates.common.datatransfer.logs.FeedbackSessionLogType;
 @Table(name = "FeedbackSessionLogs")
 public class FeedbackSessionLog extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Unique
     private UUID id;
 
     @ManyToOne
@@ -52,7 +56,7 @@ public class FeedbackSessionLog extends BaseEntity {
 
     public FeedbackSessionLog(Student student, FeedbackSession feedbackSession,
             FeedbackSessionLogType feedbackSessionLogType, Instant timestamp) {
-        //this.setId(UUID.randomUUID());
+        this.setId(UUID.randomUUID());
         this.student = student;
         this.feedbackSession = feedbackSession;
         this.feedbackSessionLogType = feedbackSessionLogType;

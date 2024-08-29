@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.persistence.*;
-import org.checkerframework.common.aliasing.qual.Unique;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 /**
  * Represents an association class between Accounts and Notifications.
@@ -17,8 +18,6 @@ import org.checkerframework.common.aliasing.qual.Unique;
 @Table(name = "ReadNotifications")
 public class ReadNotification extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Unique
     private UUID id;
 
     @ManyToOne
@@ -32,6 +31,7 @@ public class ReadNotification extends BaseEntity {
     }
 
     public ReadNotification(Account account, Notification notification) {
+        this.setId(UUID.randomUUID());
         this.setAccount(account);
         this.setNotification(notification);
     }
